@@ -1,0 +1,122 @@
+    <!DOCTYPE html>
+    <html >
+      <head>
+        <meta charset="UTF-8">
+        <title>Widget's Dashboard</title> 
+            <link rel="stylesheet" href="css/style.css"> 
+              <link rel="canonical" href="http://www.paulrhayes.com/experiments/clock/" />
+              <link rel="stylesheet" href="css/font-awesome.min.css">
+              <link rel="stylesheet" href="css/experiment-styles.css" />
+              <link rel="stylesheet" href="css/experiment.css" />
+      </head>
+
+      <body > <div ng-app="myApp">
+        <div class="container0">
+          
+           Widget's Dashboard
+
+        </div>
+         
+        <div class="container1">
+            
+          <section class="about">
+            <h1>Digital Clock</h1>
+          </section>
+            <div class="digital" id="digiClock"></div>
+                        <div id="experiment">
+                        <div id="clock">
+                            <div id="hour"><img src="images/hourHand.png" /></div>
+                            <div id="minute"><img src="images/minuteHand.png" /></div>
+                            <div id="second"><img src="images/secondHand.png" /></div>
+
+                        </div>
+                        </div>
+
+                        </div>
+         
+    <div class="container2">
+          <section class="about">
+            <h1>Local Weather</h1>
+          </section>
+
+          <div class = "wc" ng-controller="weatherController"  >
+                        <div>
+                          <h1>Forecast For: {{ place.location.city }}</h1>
+                          <h2>Current: {{ place.item.condition.text }} | {{ place.item.condition.temp }}&deg; <img src="http://l.yimg.com/a/i/us/we/52/{{place.item.condition.code}}.gif"/></h2>
+                          <div  ng-repeat="forecast in place.item.forecast | limitTo:2">
+                            <p><strong>{{ forecast.date }}</strong> – {{ forecast.text }}</p>
+                            <p>H: {{ forecast.high }}&deg; | L: {{ forecast.low }}&deg;</p>
+                          </div>
+                            
+                            
+                        </div>
+                    </div>
+        
+        <div class = "wd" ng-controller="weatherController"  >
+                        <div>
+                          <h1>Forecast For: {{ place.location.city }}</h1>
+                          <h2>Current: {{ place.item.condition.text }} | {{ place.item.condition.temp }}&deg; <img src="http://l.yimg.com/a/i/us/we/52/{{place.item.condition.code}}.gif"/></h2>
+                          <div  ng-repeat="forecast in place.item.forecast">
+                            <p><strong>{{ forecast.date }}</strong> – {{ forecast.text }}</p>
+                            <p>H: {{ forecast.high }}&deg; | L: {{ forecast.low }}&deg;</p>
+                          </div>
+                            
+                            
+                        </div>
+                    </div>
+
+    </div>
+
+
+    <div class="container3">
+          <section class="about">
+            <h1>Calendar</h1>
+          </section>
+        <div class="smallCal">
+           <div  ng-controller="TableController as t">
+      <h1>{{t.monthName}} {{t.year}}</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thur</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="weeks in t.week">
+          <td ng-repeat="date in weeks track by $index"
+               ng-class="{'today':(date==t.todaysDate)}">
+              <span>{{date}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+        </div>
+                <div class="calendarContainer">
+                <div class="controls">
+                    <p class="next label" onclick="nextMonth()"><i class="fa fa-arrow-right"></i></p>
+                    <p class="previous label" onclick="previousMonth()"><i class="fa fa-arrow-left"></i></p>
+                    <p id="current-month" class="label bold">January</p>
+                </div>
+
+                <div class="calendar" id="calendar">
+                </div>
+                </div>
+        
+        
+     </div></div>
+
+
+
+        <script src='js/jquery.min.js'></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/experiment.js"></script>
+      </body>
+    </html>
